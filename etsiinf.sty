@@ -1,0 +1,85 @@
+\ProvidesPackage{title-page}[25/05/2019 Title page for final degree project of ETSIINF UPM]
+\RequirePackage[top=3.5cm, bottom=3.5cm, left=3cm, right=3cm]{geometry}
+\RequirePackage{tikz}
+\RequirePackage[export]{adjustbox}
+\RequirePackage{eso-pic}
+\RequirePackage{subcaption}
+\RequirePackage{xcolor}
+\RequirePackage{times}
+\RequirePackage{fancyhdr}
+
+\definecolor{title-font-blue}{RGB}{37,51,141}
+\definecolor{bg-blue}{RGB}{218,238,253}
+
+\newcommand{\todo}[1]{
+  \textcolor{red}{ToDo: #1}
+}
+
+\newcommand{\director}[1]{
+  \def\director{#1}
+}
+
+\renewcommand*{\maketitle}{%
+  \begin{titlepage}
+    
+    \newgeometry{inner=0cm,outer=0cm,top=0cm,bottom=0cm}
+
+    \AddToShipoutPicture*{ % Background figure
+      \begin{tikzpicture}[remember picture, overlay, x=1cm,y=-1cm, shift={(current page.north west)}]
+
+        \def\left-margin{0}
+          \def\right-margin{21}
+        \def\top-margin{0}
+        \def\bottom-margin{28}
+
+        \path[fill=bg-blue] (\left-margin, \top-margin) -- (\left-margin, 9) -- (1.5, 9) to
+            [out=75, in=105] (19.5, 9) -- (\right-margin, 9) -- (\right-margin, \top-margin);
+
+        \path[fill=bg-blue] (\left-margin, 19.5) to [out=-45, in=225] (\right-margin, 19.5) --
+        (\right-margin, \bottom-margin) -- (\left-margin, \bottom-margin);
+
+      \end{tikzpicture}
+    }
+
+    \newgeometry{inner=1.5cm,outer=1.5cm,top=1cm}
+
+    \begin{figure}
+      \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=.8\textwidth,left]{img/upm}
+      \end{subfigure}
+      \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=.3\textwidth,right]{img/etsiinf}
+      \end{subfigure}
+    \end{figure}
+
+    {%
+      \centering
+      \color{title-font-blue}
+      \vspace*{0.5cm}
+
+      {\LARGE\bf Graduado en Ingeniería Informática}\\[1.5cm]
+      {\Large Universidad Politécnica de Madrid}\\[0.2cm]
+      {\Large Escuela Técnica Superior de\\ Ingenieros Informáticos\par}
+
+      \vspace{1cm}
+
+      {\LARGE\bf\MakeUppercase{Trabajo fin de grado}\par}
+
+      \vspace*{1cm}
+
+      {\LARGE \@title\par}
+
+      \vspace*{2cm}
+
+      \begin{tabular}{r l}
+        \Large Autor:    & \Large \@author \\[0.5cm]
+        \Large Director: & \Large \director
+      \end{tabular}
+
+      \vspace*{1cm}
+
+      {\hfill \LARGE\MakeUppercase{Madrid, \@date}}
+    }
+    
+  \end{titlepage}
+}
