@@ -1,0 +1,2 @@
+* Title page for final degree project of the ETSIINF UPM
+This style emulates the title page in LaTeX.
